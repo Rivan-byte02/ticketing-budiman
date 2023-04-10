@@ -1,9 +1,15 @@
 .search-container {
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-color: black;
+  align-items: baseline;
+  min-height: 100vh;
+  height: 100%;
+  background-color: #5398C9;
+  overflow: scroll;
+
+  &.ticket-list {
+    flex-direction: column;
+  }
 
   .ticket-card {
     display: flex;
@@ -13,6 +19,7 @@
     background-color: white;
     border-radius: 2rem;
     padding: 1.5rem 1rem;
+    margin: 10vh;
 
     >header {
       padding: 1rem 0px;
@@ -73,7 +80,7 @@
       position: relative;
       
       .divider {
-        height: 1px;
+        height: 0px;
         width: 90%;
         border: 1px dashed lightgrey;
       }
@@ -82,7 +89,7 @@
         position: absolute;
         width: 3rem;
         height: 3rem;
-        background-color: black;
+        background-color: #5398C9;
         border-radius: 100%;
         left: -3rem;
 
@@ -99,11 +106,17 @@
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    background-color: darkblue;
     padding: 1rem;
-    border-radius: 16px;
-    padding: 1rem 2rem;
+    padding: 30px 2rem;
     margin: 1rem;
+    background: #F5F5F5;
+    border-radius: 25px;
+    width: max-content;
+    height: max-content;
+    min-width: 521px;
+    max-height: 210px;
+    top: 30vh;
+    position: relative;
 
     header {
       display: flex;
@@ -112,29 +125,29 @@
       align-items: center;
       gap: 1rem;
  
-      h2, h4 {
+      h2 {
         margin: 0px;
-        font-weight: 400;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 27px;
       }
 
       h2 {
-        color: white;
-      }
-
-      h4 {
-        color: lightgray;
+        color: #000000;
       }
     }
 
     input {
       height: 30px;
-      width: calc(100% - 18px);
+      width: calc(100% - 60px);
       border: none;
       filter: drop-shadow(0px 0px 1px black);
-      border-radius: .5rem;
+      border-radius: 0.5rem;
       font-size: 14px;
       font-weight: 600;
       padding: 4px 8px;
+      margin: auto;
   
       &::placeholder {
         color: lightgray;
@@ -146,6 +159,12 @@
     >h4 {
       margin: 0px;
       color: salmon;
+    }
+
+    img {
+      width: 142px;
+      height: 44px;
+      margin: auto;
     }
     
     .button-container {
