@@ -21,8 +21,8 @@ function TicketSearching() {
     if (result.length) {
       setTicketData(result);
       setTimeout(() => {
-        window.print()
-      }, 1000)
+        // window.print();
+      }, 1000);
     }
   };
 
@@ -33,88 +33,122 @@ function TicketSearching() {
   }, [value, currentBookingCode.length]);
 
   return (
-    <div className={`search-container${ticketData.length ? " ticket-list" : ""}`}>
+    <div
+      className={`search-container${ticketData.length ? " ticket-list" : ""}`}
+    >
       {ticketData.length ? (
         ticketData.map((e, i) => {
           return (
             <div className="ticket-card" key={i}>
               <header>
-                <div>
-                  <h2>{e.code_tiket}</h2>
-                  <h4>{e.invoice}</h4>
+                <img
+                  className="budiman"
+                  src={require("../../BUDIMAN.png")}
+                  alt="budiman-logo"
+                />
+                <div className="qr-section">
+                  <img src={e.qr_code} alt="qr-code" />
+                  <p>{e.code_tiket}</p>
                 </div>
-                <img src={e.qr_code} alt="qr-code" />
               </header>
-              <div className="divider-container">
-                <div className="circle"></div>
-                <div className="divider"></div>
-                <div className="circle right"></div>
-              </div>
               <section>
                 <section>
-                  <h3 className="title">Nama Penumpang</h3>
-                  <h3>{e.nama_penumpang}</h3>
+                  <h3 className="bus-code">{`${e.tipe_bus} (${e.code_bus})`}</h3>
                 </section>
-                <section>
-                  <h3 className="title">Telepon Penumpang</h3>
-                  <h3>{e.no_tlp_penumpang}</h3>
-                </section>
-                <section>
-                  <h3 className="title">Tanggal Cetak</h3>
-                  <h3>{e.tgl_cetak}</h3>
-                </section>
-                <section>
-                  <h3 className="title">Tanggal Transaksi</h3>
-                  <h3>{e.tgl_transaksi}</h3>
-                </section>
-                <div className="divider-container">
-                  <div className="circle"></div>
-                  <div className="divider"></div>
-                  <div className="circle right"></div>
-                </div>
-                <section>
-                  <h3 className="title">Cetak Oleh</h3>
-                  <h3>{e.cetak_oleh}</h3>
-                </section>
+                <table>
+                  <tr>
+                    <th colSpan={2}>
+                      <h3>{`${e.berangkat} - ${e.tujuan}`}</h3>
+                    </th>
+                  </tr>
+                  <tr>
+                    <td>
+                      <section>
+                        <h3 className="title">Jam Keberangkatan</h3>
+                        <h3>{e.jam_berangkat}</h3>
+                      </section>
+                    </td>
+                    <td>
+                      <section>
+                        <h3 className="title">Tanggal Keberangkatan</h3>
+                        <h3>{e.tanggal_berangkat}</h3>
+                      </section>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <section>
+                        <h3 className="title">Bis</h3>
+                        <h3>{e.code_unit}</h3>
+                      </section>
+                    </td>
+                    <td>
+                      <section>
+                        <h3 className="title">Harga Tiket</h3>
+                        <h3>{rupiah(e.harga_tiket)}</h3>
+                      </section>
+                    </td>
+                  </tr>
+                </table>
                 <section className="row">
                   <section>
-                    <h3 className="title">Nama Agen</h3>
-                    <h3>{e.agen_name}</h3>
+                    <h3 className="title">Naik Dari Agen:</h3>
+                    <h3>{(e.agen_titik_naik)}</h3>
                   </section>
                   <section>
-                    <h3 className="title">Kode Agen</h3>
-                    <h3>{e.agen_code}</h3>
+                    <table>
+                    <tr>
+                      <td>
+                        <section>
+                          <h3 className="title">Jalur</h3>
+                          <h3 style={{ color: "transparent"}}>{e.no_kursi}</h3>
+                        </section>
+                      </td>
+                      <td>
+                        <section>
+                          <h3 className="title">No. Kursi</h3>
+                          <h3>{e.no_kursi}</h3>
+                        </section>
+                      </td>
+                    </tr>
+                  </table>
                   </section>
                 </section>
-                <section className="row">
-                  <section>
-                    <h3 className="title">Berangkat</h3>
-                    <h3>{e.berangkat}</h3>
-                  </section>
-                  <section>
-                    <h3 className="title">Tujuan</h3>
-                    <h3>{e.tujuan}</h3>
-                  </section>
+                <section>
+                  <h3 className="title">Turun di</h3>
+                  <h3>{e.agen_titik_turun}</h3>
                 </section>
-                <section className="row">
-                  <section>
-                    <h3 className="title">Nomor Kursi</h3>
-                    <h3>{e.no_kursi}</h3>
-                  </section>
-                  <section>
-                    <h3 className="title">Jam Keberangkatan</h3>
-                    <h3>{e.jam_berangkat}</h3>
-                  </section>
-                </section>
-                <section className="row">
-                  <section>
-                    <h3 className="title">Harga Tiket</h3>
-                    <h3>{rupiah(e.harga_tiket)}</h3>
-                  </section>
-                  <section>
-                    <h3 className="title">Tipe Bus</h3>
-                    <h3>{e.tipe_bus}</h3>
-                  </section>
+                <section className="penumpang">
+                  <table>
+                    <tr>
+                      <td>Nama</td>
+                      <td>:{e.nama_penumpang}</td>
+                    </tr>
+                    <tr>
+                      <td>No. Telp</td>
+                      <td>:{e.no_tlp_penumpang}</td>
+                    </tr>
+                    <tr>
+                      <td className="invoice sm">Invoice</td>
+                      <td className="invoice sm">:{e.invoice}</td>
+                    </tr>
+                    <tr>
+                      <td className="sm">Trans Via</td>
+                      <td className="sm">:{e.trans_via}</td>
+                    </tr>
+                    <tr>
+                      <td className="sm">Tgl Trans</td>
+                      <td className="sm">:{e.tgl_transaksi}</td>
+                    </tr>
+                    <tr>
+                      <td className="sm">Tgl Cetak</td>
+                      <td className="sm">:{e.tgl_cetak}</td>
+                    </tr>
+                    <tr>
+                      <td className="sm">Di Cetak Oleh</td>
+                      <td className="sm">:{e.cetak_oleh}</td>
+                    </tr>
+                  </table>
                 </section>
               </section>
             </div>
