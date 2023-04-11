@@ -21,7 +21,7 @@ function TicketSearching() {
     if (result.length) {
       setTicketData(result);
       setTimeout(() => {
-        // window.print();
+        window.print();
       }, 1000);
     }
   };
