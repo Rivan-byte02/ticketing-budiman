@@ -1,13 +1,29 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
 import reportWebVitals from './reportWebVitals';
+import TicketSearching from './view/ticketSearching';
+import TicketPrint from './view/ticketPrint';
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <TicketSearching />,
+  },
+  {
+    path: "print-ticket/:invoiceId",
+    element: <TicketPrint />,
+  },
+]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
 

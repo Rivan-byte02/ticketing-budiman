@@ -1,0 +1,208 @@
+.print-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  height: 100%;
+  overflow: scroll;
+
+  &.ticket-list {
+    flex-direction: column;
+    width: 100vw;
+  }
+
+  .ticket-card {
+    display: flex;
+    max-width: 100vw;
+    flex-direction: column;
+    gap: 8px;
+    background-color: white;
+    border-radius: 0.5rem;
+    margin: 1rem 0px;
+    height: 358mm;
+
+    >header {
+      padding: 0.5rem 0px;
+      display: flex;
+      flex-direction: column;
+      h2, h4 {
+        margin: 0px;
+      }
+
+      h2 {
+        color: black;
+        font-weight: 800;
+        font-size: 24px;
+      }
+
+      h4 {
+        color: lightslategray;
+        font-weight: 400;
+        font-size: 16px;
+      }
+
+      img {
+        width: 100px;
+        margin: auto;
+
+        &.budiman {
+          width: 150px;
+        }
+      }
+
+      .qr-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        p {
+          margin: 0px;
+          font-size: 14px;
+        }
+      }
+    }
+
+    .penumpang {
+      tr {
+        td {
+          font-weight: 700;
+          font-size: 14px;
+          &:first-child {
+            width: 40%;
+          }
+
+          &.invoice {
+            padding-top: 15px;
+          }
+
+          &.sm {
+            font-weight: 400;
+          }
+        }
+      }
+    }
+
+    >section {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 4px;
+      >section {
+        h3 {
+          margin: 0px;
+          font-weight: 700;
+          font-size: 14px;
+          padding: 4px 3px;
+
+          &.title {
+            color: grey;
+            font-size: 8px;
+            font-weight: 400;
+          }
+
+          &.bus-code {
+            font-weight: 400;
+          }
+        }
+
+        &.row {
+          display: flex;
+          // gap: 2rem;
+
+          >section {
+            min-width: 50%;
+
+            >table {
+              width: 100%;
+              border: 1px solid;
+              >tr {
+                >td {
+                  width: 50%;
+                  border: 1px solid;
+                }
+                h3 {
+                  margin: 0px;
+                  font-weight: 700;
+                  font-size: 14px;
+                  padding: 4px;
+        
+                  &.title {
+                    color: grey;
+                    font-size: 8px;
+                    font-weight: 400;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      >table {
+        border: 1px solid;
+        width: 100%;
+        >tr {
+          >th, td {
+            border: 1px solid;
+          }
+          h3 {
+            margin: 0px;
+            font-weight: 700;
+            font-size: 14px;
+            padding: 4px;
+  
+            &.title {
+              color: grey;
+              font-size: 8px;
+              font-weight: 400;
+            }
+          }
+        }
+      }
+    }
+
+    .divider-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      
+      .divider {
+        height: 0px;
+        width: 90%;
+        border: 1px dashed lightgrey;
+      }
+      
+      .circle {
+        position: absolute;
+        width: 3rem;
+        height: 3rem;
+        background-color: #5398C9;
+        border-radius: 100%;
+        left: -3rem;
+
+        &.right {
+          right: -3rem;
+          left: auto;
+        }
+      }
+    }
+
+  }
+
+}
+
+@media only screen and (max-width: 425px) {
+  .ticket-card {
+    min-width: 200px !important;
+    overflow: hidden;
+
+    >header {
+      padding: 1rem 0px;
+      display: flex;
+      flex-direction: column;
+    }
+
+  }
+}
