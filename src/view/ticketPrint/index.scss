@@ -9,6 +9,7 @@
   &.ticket-list {
     flex-direction: column;
     width: 100vw;
+    gap: 1rem;
   }
 
   .ticket-card {
@@ -19,7 +20,7 @@
     background-color: white;
     border-radius: 0.5rem;
     margin: 1rem 0px;
-    height: 358mm;
+    height: 210mm;
 
     >header {
       padding: 0.5rem 0px;
