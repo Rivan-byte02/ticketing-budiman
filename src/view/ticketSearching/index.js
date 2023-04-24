@@ -19,7 +19,6 @@ function TicketSearching() {
   };
 
   const fetchTicketWithInvoice = async (e) => {
-    console.log(e);
     if (!e.length) {
       setIsError(true);
       return;
@@ -28,14 +27,16 @@ function TicketSearching() {
     const result = await fetchTicketData(e);
     if (result.length) {
       setTicketData(result);
+    } else {
+      setIsError(true);
     }
   };
-  
+
   return (
     <div className={`search-container`}>
       {ticketData.length ? (
         <div>
-          <header
+          {/* <header
             onClick={() => {
               setTicketData([]);
             }}
@@ -45,7 +46,7 @@ function TicketSearching() {
               <h3>Cari Tiket</h3>
               <h5>Search Ticket</h5>
             </div>
-          </header>
+          </header> */}
           <div className="tabel-section">
             <div>
               <table cellpadding="0" cellspacing="0" border="0">
@@ -55,7 +56,9 @@ function TicketSearching() {
                     <th>No. Bis</th>
                     <th>Naik Dari Agen</th>
                     <th>Turun Di</th>
+                    <th>No. Kursi</th>
                     <th>Nama</th>
+                    <th>Cetak</th>
                   </tr>
                 </thead>
                 <tbody className="tbl-content">
@@ -66,7 +69,20 @@ function TicketSearching() {
                         <td>{e.code_unit}</td>
                         <td>{e.agen_titik_naik}</td>
                         <td>{e.agen_titik_turun}</td>
+                        <td>{e.no_kursi}</td>
                         <td>{e.nama_penumpang}</td>
+                        <td>
+                          <div
+                            onClick={() => {
+                              // navigate(`/print-ticket/${value}/${i}`);
+                              window.open(`/print-ticket/${value}/${i}`, "_blank")
+                            }}
+                            className="button-print"
+                          >
+                            <span class="material-symbols-outlined">print</span>{" "}
+                            Cetak Tiket
+                          </div>
+                        </td>
                       </tr>
                     );
                   })}
@@ -79,7 +95,7 @@ function TicketSearching() {
               ticketData.length ? " ticket-list" : ""
             }`}
           >
-            <div className="tickets">
+            {/* <div className="tickets">
               {ticketData.map((e, i) => {
                 return (
                   <div className="ticket-card" key={i}>
@@ -199,18 +215,35 @@ function TicketSearching() {
                   </div>
                 );
               })}
+            </div> */}
+            <div className="button-section">
+              <button
+                onClick={() => {
+                  setTicketData([]);
+                  setBookingCode("");
+                }}
+                className="button-container"
+              >
+                <span class="material-symbols-outlined">arrow_back</span>
+                <div>
+                  <h3>Kembali Cari Tiket Anda</h3>
+                  <h5>Back To Search Your Ticket</h5>
+                </div>
+                {/* <span class="material-symbols-outlined">arrow_forward</span> */}
+              </button>
             </div>
             <div className="button-section">
               <button
                 onClick={() => {
-                  navigate(`/print-ticket/${value}`);
+                  // navigate(`/print-ticket/${value}/all`);
+                  window.open(`/print-ticket/${value}/all`, "_blank")
                 }}
                 className="button-container"
               >
                 <span class="material-symbols-outlined">print</span>
                 <div>
-                  <h3>Cari Tiket</h3>
-                  <h5>Print Ticket</h5>
+                  <h3>Cetak Semua Tiket</h3>
+                  <h5>Print All Ticket</h5>
                 </div>
                 <span class="material-symbols-outlined">arrow_forward</span>
               </button>
@@ -234,7 +267,11 @@ function TicketSearching() {
               type={"text"}
               placeholder={"Contoh : INV20230402BDMN"}
             />
-            {isError && <h5>Harap Masukan Kode Booking / Pembayaran</h5>}
+            {isError && (
+              <h5 style={{ color: "red" }}>
+                Harap Masukan Kode Booking / Pembayaran Yang Aktif
+              </h5>
+            )}
             <div className="footer-container">
               <img src={require("../../logo-budiman.png")} alt="budiman-logo" />
               <button

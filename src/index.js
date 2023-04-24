@@ -15,7 +15,7 @@ const router = createBrowserRouter([
     element: <TicketSearching />,
   },
   {
-    path: "print-ticket/:invoiceId",
+    path: "print-ticket/:invoiceId/:index",
     element: <TicketPrint />,
   },
 ]);

@@ -33,6 +33,7 @@
     >.tabel-section {
       width: max-content;
       margin: auto;
+      margin-top: 10%;
 
       table {
         border-radius: 0.5rem;
@@ -462,6 +463,17 @@
       
     }
   }
+}
+
+.button-print {
+  cursor: pointer;
+  padding: 0.5rem;
+  background-color: #187AA4;
+  border-radius: 8px;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 @media only screen and (max-width: 425px) {

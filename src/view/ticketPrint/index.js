@@ -19,7 +19,7 @@ function TicketPrint() {
   };
 
   const fetchTicketWithInvoice = async () => {
-    console.log(params.invoiceId);
+    console.log(params);
     if (!params.invoiceId.length) {
       setIsError(true)
       return
@@ -27,9 +27,9 @@ function TicketPrint() {
     setIsError(false)
     const result = await fetchTicketData(params.invoiceId);
     if (result.length) {
-      setTicketData(result);
+      setTicketData(params.index === "all" ? result : [result[params.index]]);
       setTimeout(() => {
-        window.print();
+        window.print({ silent: true });
       }, 1000);
     }
   };
